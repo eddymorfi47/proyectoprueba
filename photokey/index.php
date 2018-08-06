@@ -2,11 +2,12 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>PhotoKey</title>
+    <title>Photokey</title>
+    <script src="custom.js"></script>
   </head>
-  <body>
-<?php
-include "login.php";
-?>
+  <body onload="nobackbutton();">
+    <?php
+    include_once("proof.php");
+     ?>
   </body>
 </html>

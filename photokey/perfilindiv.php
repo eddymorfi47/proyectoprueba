@@ -17,35 +17,31 @@
             </a>
 
             <nav>
-              <a href="postupload.php">
-                      <img src="img/add.png" alt="Add">
-                  </a>
                 <a href="principal.php">
                         <img src="img/compass.svg" alt="Explorar">
                     </a>
-                <a href="ajustes.php">
-                        <img src="img/set.png" alt="Ajustes">
-                    </a>
-                    <a href="operacioneslogout/logoutaction.php">
-                            <img src="img/logout.png" alt="LogOut">
+                    <a href="perfil.php">
+                            <img src="img/user.svg" alt="Perfil">
                         </a>
+
 
             </nav>
         </div>
     </header>
 
     <?php
-    include_once "operacionesperfilpropio/obtenerpostes.php";
-    include_once "operacionesperfilpropio/manejoperfilpropio.php";
+    include_once "operacionesperfilindividual/obtenerpostes.php";
+    include_once "operacionesperfilindividual/manejoperfilpropio.php";
     try{
       $miconexion=new PDO('mysql:host=localhost; dbname=photokey', 'root', '');
 
       $miconexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
       $manejoperfilpropio=new manejoperfilpropio($miconexion);
+      $obtenerperfilpropio=new obtenerperfilpropio();
 
-      $tabla_blogs=$manejoperfilpropio->getContenidoPorLog();
-
+      $tabla_blogs=$manejoperfilpropio->getContenidoPorPost();
+      $tabla_blo=$manejoperfilpropio->getContenidoPorLoger();
       if(empty($tabla_blogs)){
         PRINT <<<HERE
         <div class="bodyer">
@@ -53,7 +49,7 @@
               <div class="contaier">
               <div class="containerposter">
                   <div class="containerimgposter">
-                    <img src="img/is.jpg" alt="PostPic">
+                    <img src='data:image/jpeg;base64, {$codecode}'/>
                   </div>
                   <div class="containerinfoposter">
                     <h4>No Nada Para Mostrar</h4>
@@ -71,37 +67,90 @@ HERE;
 
       }
       else{
-        foreach($tabla_blogs as $valor){
-         $useruser = $valor->getUsuario();
-         $namename = $valor->getNombre();
-         $imgimg = $valor->getPerfipic();
-         $codecode = base64_encode($imgimg);
-         $seguisegui = $valor->getSeguidorescount();
-         $descdesc = $valor->getDescripcion();
+        foreach($tabla_blo as $valo){
+						$usuarioserv = $valo->getUsuario();
+					}
+          $v7=$_GET['variable2'];
 
-         PRINT <<<HERE
-         <div class="bodyer">
-           <div class="contuper">
-               <div class="contaier">
-               <div class="containerposter">
-                   <div class="containerimgposter">
-                     <img src='data:image/jpeg;base64, {$codecode}'/>
+          if($v7==$usuarioserv){
+            foreach($tabla_blogs as $valor){
+             $useruser = $valor->getUsuario();
+             $namename = $valor->getNombre();
+             $imgimg = $valor->getPerfipic();
+             $codecode = base64_encode($imgimg);
+             $seguisegui = $valor->getSeguidorescount();
+             $descdesc = $valor->getDescripcion();
+
+             PRINT <<<HERE
+             <div class="bodyer">
+               <div class="contuper">
+                   <div class="contaier">
+                   <div class="containerposter">
+                       <div class="containerimgposter">
+                         <img src='data:image/jpeg;base64, {$codecode}'/>
+                       </div>
+                       <div class="containerinfoposter">
+                         <h4>$namename</h4>
+                         <p>$useruser</p>
+                         <p>$seguisegui Toques</p>
+                       </div>
+                       <div class="containerinfo2poster">
+                         <p>$descdesc</p>
+                       </div>
                    </div>
-                   <div class="containerinfoposter">
-                     <h4>$namename</h4>
-                     <p>$useruser</p>
-                     <p>$seguisegui Toques</p>
-                   </div>
-                   <div class="containerinfo2poster">
-                     <p>$descdesc</p>
-                   </div>
+                 </div>
                </div>
-             </div>
-           </div>
-           </div>
+               </div>
 HERE;
 
-       }
+           }
+
+
+          }
+
+          else{
+            foreach($tabla_blogs as $valor){
+             $useruser = $valor->getUsuario();
+             $namename = $valor->getNombre();
+             $imgimg = $valor->getPerfipic();
+             $codecode = base64_encode($imgimg);
+             $seguisegui = $valor->getSeguidorescount();
+             $descdesc = $valor->getDescripcion();
+
+             PRINT <<<HERE
+             <div class="bodyer">
+               <div class="contuper">
+                   <div class="contaier">
+                   <div class="containerposter">
+                       <div class="containerimgposter">
+                         <img src='data:image/jpeg;base64, {$codecode}'/>
+                       </div>
+                       <div class="containerinfoposter">
+                         <h4>$namename</h4>
+                         <p>$useruser</p>
+                         <div class="conttoques">
+                         <a href="operacioneslikes/actiontoques.php?variable4=$useruser&variable5=$seguisegui">
+                                 <img src="img/like.png" alt="PostPic">
+                             </a>
+                             <p>$seguisegui Toques.</p>
+                         </div>
+                       </div>
+                       <div class="containerinfo2poster">
+                         <p>$descdesc</p>
+                       </div>
+                   </div>
+                 </div>
+               </div>
+               </div>
+HERE;
+
+           }
+
+
+          }
+
+
+
 
       }
 
@@ -115,7 +164,7 @@ HERE;
 
 
 
-    include_once "operacionesperfilpropio/manejopostes.php";
+    include_once "operacionesperfilindividual/manejopostes.php";
     try{
       $miconexionpost=new PDO('mysql:host=localhost; dbname=photokey', 'root', '');
 

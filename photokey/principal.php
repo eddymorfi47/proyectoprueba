@@ -5,11 +5,12 @@
     <title>PhotoKey</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/headerstyle.css">
+    <script src="custom.js"></script>
   </head>
-  <body>
+  <body onload="nobackbutton();">
     <header>
         <div class="container">
-            <a class="logo" href="principal.php">
+            <a class="logo" href="index.php">
                 <img src="img/instagram-logo.svg" alt="Logo">
                 <img src="img/insta.png" alt="Nombre Aplicacion">
             </a>
@@ -18,7 +19,7 @@
 				      <input type="submit" name="btn_enviar" id="btn_enviar" value="Buscar" class="btnsend"></td></tr>
             </form>
             <nav>
-                
+
                 <a href="perfil.php">
                         <img src="img/user.svg" alt="Perfil">
                     </a>
@@ -62,13 +63,14 @@ HERE;
          $codecode = base64_encode($imgimg);
          $likeslikes = $valor->getLikescount();
          $commentcomment = $valor->getComentario();
+
          PRINT <<<HERE
           <div class="body">
           <div class="contup">
           <div class="container">
           <div class="containerpost">
             <div class="containerinfopost">
-              <h4>$useruser</h4>
+              <a href="perfilindiv.php?variable=$useruser&variable2=$useruser">$useruser</a>
               <p>$datedate</p>
             </div>
               <div class="containerimgpost">
@@ -77,8 +79,11 @@ HERE;
 
               </div>
               <div class="containerinfo2post">
-                <img src="img/like.png" alt="PostPic">
-                <h2>$likeslikes</h2>
+              <a href="operacioneslikes/actionlikes.php?variable=$useruser&variable2=$likeslikes">
+                      <img src="img/like.png" alt="PostPic">
+                  </a>
+
+                <h2>$likeslikes Toques al Post.</h2>
                 <p>$commentcomment</p>
                 </div>
                 </div>

@@ -5,8 +5,9 @@
     <title>PhotoKey</title>
     <link rel="stylesheet" href="css/outside.css">
     <link rel="stylesheet" href="css/headerstyle.css">
+    <script src="custom.js"></script>
   </head>
-  <body>
+  <body onload="nobackbutton();">
     <div class="container">
         <div class="card">
             <span class="logo">

@@ -14,7 +14,7 @@
 }
 .containerimgposter img{
   text-align: center;
-  max-width: 200px;
+  max-width: 100px;
   width: auto;
   height: auto;
 }
@@ -44,4 +44,7 @@
 .bodyer{
   width: 100%;
   margin-top: 90px;
+}
+.conttoques img{
+  width: 30px;
 }

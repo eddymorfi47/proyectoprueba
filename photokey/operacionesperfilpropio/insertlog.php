@@ -16,7 +16,6 @@ foreach($tabla_blogs as $valor){
  $temporal = $valor->getUsuario();
 }
 
-session_start();
 $_SESSION["tempi"]=$temporal;
 
 

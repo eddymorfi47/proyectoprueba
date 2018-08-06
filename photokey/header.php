@@ -8,7 +8,7 @@
   <body>
     <header>
         <div class="container">
-            <a class="logo" href="./">
+            <a class="logo" href="index.php">
                 <img src="img/instagram-logo.svg" alt="Logo">
                 <img src="img/insta.png" alt="Nombre Aplicacion">
             </a>
